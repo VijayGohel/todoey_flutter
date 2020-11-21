@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/widgets/list_view.dart';
+import 'package:todoey_flutter/screens/add_bottomsheet.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => AddBottomSheet(),
+          );
+        },
+        child: Icon(
+          Icons.add,
+        ),
+        backgroundColor: Colors.lightBlueAccent,
+      ),
       backgroundColor: Colors.lightBlueAccent,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,6 +58,7 @@ class TasksScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              padding: EdgeInsets.only(left: 20),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -51,6 +66,7 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20),
                 ),
               ),
+              child: TaskView(),
             ),
           ),
         ],
