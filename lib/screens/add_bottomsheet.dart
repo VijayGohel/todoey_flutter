@@ -6,13 +6,44 @@ class AddBottomSheet extends StatelessWidget {
     return Container(
       color: Color(0xff757575),
       child: Container(
-        // height: 200,
+        padding: EdgeInsets.all(30),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
           ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Add Task',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 30,
+                color: Colors.lightBlueAccent,
+              ),
+            ),
+            TextField(
+              autofocus: true,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 17,
+            ),
+            FlatButton(
+              onPressed: () {},
+              child: Text(
+                'Add',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+              color: Colors.lightBlueAccent,
+            ),
+          ],
         ),
       ),
     );
