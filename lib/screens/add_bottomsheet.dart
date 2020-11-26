@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AddBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String taskTitle;
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -28,12 +29,18 @@ class AddBottomSheet extends StatelessWidget {
             TextField(
               autofocus: true,
               textAlign: TextAlign.center,
+              onChanged: (value) {
+                taskTitle = value;
+              },
             ),
             SizedBox(
               height: 17,
             ),
             FlatButton(
-              onPressed: () {},
+              onPressed: () {
+                print(taskTitle);
+                Navigator.pop(context);
+              },
               child: Text(
                 'Add',
                 style: TextStyle(
