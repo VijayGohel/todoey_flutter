@@ -9,57 +9,72 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasklist = [
-    Task(name: 'buy milk'),
-    Task(name: 'buy eggs'),
-    Task(name: 'go for walk'),
+  List<Task> tasks = [
+    Task(name: 'Buy milk'),
+    Task(name: 'Buy eggs'),
+    Task(name: 'Buy bread'),
   ];
+  void addTaskCallback(newTitle) {
+    tasks.add(
+      Task(name: newTitle),
+    );
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.lightBlueAccent,
+        child: Icon(Icons.add),
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            builder: (context) => AddBottomSheet(),
+            // isScrollControlled: true,
+            builder: (context) => AddBottomSheet(addTaskCallback: (newTitle) {
+              setState(() {
+                print('in callback');
+                tasks.add(
+                  Task(name: newTitle),
+                );
+              });
+              Navigator.pop(context);
+            }),
           );
         },
-        child: Icon(
-          Icons.add,
-        ),
-        backgroundColor: Colors.lightBlueAccent,
       ),
-      backgroundColor: Colors.lightBlueAccent,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           Container(
-            padding: EdgeInsets.only(top: 60, left: 30, right: 30, bottom: 30),
+            padding: EdgeInsets.only(
+                top: 60.0, left: 30.0, right: 30.0, bottom: 30.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 CircleAvatar(
-                  radius: 30,
-                  backgroundColor: Colors.white,
                   child: Icon(
                     Icons.list,
+                    size: 30.0,
                     color: Colors.lightBlueAccent,
-                    size: 30,
                   ),
+                  backgroundColor: Colors.white,
+                  radius: 30.0,
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.0,
                 ),
                 Text(
                   'Todoey',
                   style: TextStyle(
-                      fontSize: 50,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white),
+                    color: Colors.white,
+                    fontSize: 50.0,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 Text(
-                  '12 tasks',
+                  '${tasks.length} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -70,16 +85,16 @@ class _TasksScreenState extends State<TasksScreen> {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0),
                 ),
               ),
               child: TaskView(
-                taskList: tasklist,
+                taskList: tasks,
               ),
             ),
           ),

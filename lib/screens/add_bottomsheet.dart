@@ -1,54 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/models/task.dart';
 
 class AddBottomSheet extends StatelessWidget {
+  final Function addTaskCallback;
+
+  AddBottomSheet({this.addTaskCallback});
+
+  void printM() {
+    print('in bottomsheet init');
+  }
+
   @override
   Widget build(BuildContext context) {
-    String taskTitle;
+    String newTaskTitle;
+    printM();
     return Container(
       color: Color(0xff757575),
       child: Container(
-        padding: EdgeInsets.all(30),
+        padding: EdgeInsets.all(20.0),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
           ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
+          children: <Widget>[
             Text(
               'Add Task',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 30.0,
                 color: Colors.lightBlueAccent,
               ),
             ),
             TextField(
               autofocus: true,
               textAlign: TextAlign.center,
-              onChanged: (value) {
-                taskTitle = value;
+              onChanged: (newText) {
+                newTaskTitle = newText;
               },
-            ),
-            SizedBox(
-              height: 17,
             ),
             FlatButton(
-              onPressed: () {
-                print(taskTitle);
-                Navigator.pop(context);
-              },
               child: Text(
                 'Add',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
                 ),
               ),
               color: Colors.lightBlueAccent,
+              onPressed: addTaskCallback,
+              // onPressed: () {
+              //   print("onpressed");
+              //   print(newTaskTitle);
+              // },
             ),
           ],
         ),
