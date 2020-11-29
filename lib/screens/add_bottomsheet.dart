@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todoey_flutter/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey_flutter/models/task_data.dart';
 
 class AddBottomSheet extends StatelessWidget {
   final Function addTaskCallback;
@@ -44,19 +46,17 @@ class AddBottomSheet extends StatelessWidget {
               },
             ),
             FlatButton(
-              child: Text(
-                'Add',
-                style: TextStyle(
-                  color: Colors.white,
+                child: Text(
+                  'Add',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              color: Colors.lightBlueAccent,
-              onPressed: addTaskCallback,
-              // onPressed: () {
-              //   print("onpressed");
-              //   print(newTaskTitle);
-              // },
-            ),
+                color: Colors.lightBlueAccent,
+                onPressed: () {
+                  // Provider.of<TaskData>(context).addTask(newTaskTitle);
+                  addTaskCallback(newTaskTitle);
+                }),
           ],
         ),
       ),

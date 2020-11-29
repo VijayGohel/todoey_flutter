@@ -3,8 +3,19 @@ import 'package:todoey_flutter/widgets/list_view.dart';
 import 'package:todoey_flutter/screens/add_bottomsheet.dart';
 import 'package:provider/provider.dart';
 import 'package:todoey_flutter/models/task_data.dart';
+import 'package:todoey_flutter/models/task.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: 'Buy milk'),
+    Task(name: 'Buy eggs'),
+    Task(name: 'Buy bread'),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,13 +28,13 @@ class TasksScreen extends StatelessWidget {
             context: context,
             // isScrollControlled: true,
             builder: (context) => AddBottomSheet(addTaskCallback: (newTitle) {
-              // setState(() {
-              //   print('in callback');
-              //   tasks.add(
-              //     Task(name: newTitle),
-              //   );
-              // });
-              // Navigator.pop(context);
+              setState(() {
+                print('in callback');
+                tasks.add(
+                  Task(name: newTitle),
+                );
+              });
+              Navigator.pop(context);
             }),
           );
         },
