@@ -18,6 +18,16 @@ class TaskData extends ChangeNotifier {
     return UnmodifiableListView(_tasks);
   }
 
+  void checkUncheckBox(Task task) {
+    task.toggleDone();
+    notifyListeners();
+  }
+
+  void removeTask(Task task) {
+    _tasks.remove(task);
+    notifyListeners();
+  }
+
   void addTask(String name) {
     _tasks.add(Task(name: name));
     notifyListeners();

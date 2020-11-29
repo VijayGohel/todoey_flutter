@@ -13,10 +13,11 @@ class TaskView extends StatelessWidget {
             return TaskTile(
               taskTitle: value.tasks[index].name,
               isChnaged: value.tasks[index].isDone,
-              checkBoxCallback: (checkboxState) {
-                // setState(() {
-                //   widget.taskList[index].toggleDone();
-                // });
+              checkBoxCallback: (checkboxstate) {
+                value.checkUncheckBox(value.tasks[index]);
+              },
+              deleteCallback: () {
+                value.removeTask(value.tasks[index]);
               },
             );
           },
