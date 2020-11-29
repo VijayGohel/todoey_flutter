@@ -4,18 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:todoey_flutter/models/task_data.dart';
 
 class AddBottomSheet extends StatelessWidget {
-  final Function addTaskCallback;
-
-  AddBottomSheet({this.addTaskCallback});
-
-  void printM() {
-    print('in bottomsheet init');
-  }
-
   @override
   Widget build(BuildContext context) {
     String newTaskTitle;
-    printM();
+
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -54,8 +46,10 @@ class AddBottomSheet extends StatelessWidget {
                 ),
                 color: Colors.lightBlueAccent,
                 onPressed: () {
-                  // Provider.of<TaskData>(context).addTask(newTaskTitle);
-                  addTaskCallback(newTaskTitle);
+                  Provider.of<TaskData>(context, listen: false)
+                      .addTask(newTaskTitle);
+
+                  Navigator.pop(context);
                 }),
           ],
         ),
